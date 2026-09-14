@@ -14,6 +14,6 @@ window.studioMedia = {
     building: { thumbnail: 'assets/route-entrance.webp', full: 'assets/route-entrance.webp', alt: 'Вход в подъезд № 4 по адресу улица Ленина, 15А' },
     entrance: { thumbnail: 'assets/route-stairs.webp', full: 'assets/route-stairs.webp', alt: 'Лестница внутри подъезда возле подъёмной платформы' },
     threshold: { thumbnail: 'assets/route-door.webp', full: 'assets/route-door.webp', alt: 'Золотая дверь по пути к кабинету' },
-    studio: { thumbnail: 'assets/studio-door.webp', full: 'assets/studio-door.webp', alt: 'Дверь кабинета с вывеской «Твоя спина»' },
+    studio: { thumbnail: 'assets/studio-entry-560.webp', full: 'assets/studio-entry.webp', alt: 'Дверь кабинета с вывеской «Твоя спина»' },
   },
 };

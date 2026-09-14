@@ -1,3 +1,21 @@
+const botanicalIntro=document.querySelector('.botanical-intro');
+const introMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+if(botanicalIntro){
+  let introSeen=false;
+  try{introSeen=sessionStorage.getItem('tvoya-spina-intro-v2')==='seen';}catch{}
+  if(introSeen||introMotion.matches){botanicalIntro.remove();}
+  else{
+    botanicalIntro.hidden=false;
+    const finishIntro=()=>{
+      try{sessionStorage.setItem('tvoya-spina-intro-v2','seen');}catch{}
+      botanicalIntro.remove();
+    };
+    window.requestAnimationFrame(()=>botanicalIntro.classList.add('is-opening'));
+    botanicalIntro.querySelector('.botanical-panel-right')?.addEventListener('animationend',finishIntro,{once:true});
+    window.setTimeout(finishIntro,1600);
+  }
+}
+
 const menuButton=document.querySelector('.menu-button');
 const nav=document.querySelector('.header nav');
 menuButton.addEventListener('click',()=>{const open=nav.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(open));menuButton.setAttribute('aria-label',open?'Закрыть меню':'Открыть меню');});
@@ -16,6 +34,11 @@ function setServiceOpen(card,open){
   const toggle=card.querySelector('.service-toggle');
   if(toggle){toggle.setAttribute('aria-expanded',String(open));toggle.firstChild.textContent=open?'Скрыть подробности':'Показать подробнее';}
 }
+function toggleService(card){
+  const shouldOpen=!card.classList.contains('is-open');
+  if(shouldOpen)serviceCards.forEach(other=>{if(other!==card)setServiceOpen(other,false);});
+  setServiceOpen(card,shouldOpen);
+}
 serviceCards.forEach(card=>{
   const detail=card.querySelector('.service-detail');
   if(!detail)return;
@@ -24,9 +47,14 @@ serviceCards.forEach(card=>{
   const icon=document.createElement('span');icon.textContent='+';icon.setAttribute('aria-hidden','true');
   toggle.append(document.createTextNode('Показать подробнее'),icon);
   card.append(toggle);setServiceOpen(card,false);
-  toggle.addEventListener('click',event=>{event.stopPropagation();if(compactServices.matches)setServiceOpen(card,!card.classList.contains('is-open'));});
-  card.addEventListener('click',event=>{if(!compactServices.matches||event.target.closest('a,button'))return;setServiceOpen(card,!card.classList.contains('is-open'));});
-  card.addEventListener('keydown',event=>{if(!compactServices.matches||event.target!==card||!['Enter',' '].includes(event.key))return;event.preventDefault();setServiceOpen(card,!card.classList.contains('is-open'));});
+  toggle.addEventListener('click',event=>{event.stopPropagation();if(compactServices.matches)toggleService(card);});
+  card.addEventListener('click',event=>{if(!compactServices.matches||event.target.closest('a,button'))return;toggleService(card);});
+  card.addEventListener('keydown',event=>{
+    if(!compactServices.matches||event.target!==card)return;
+    if(event.key==='Escape'&&card.classList.contains('is-open')){event.preventDefault();setServiceOpen(card,false);return;}
+    if(!['Enter',' '].includes(event.key))return;
+    event.preventDefault();toggleService(card);
+  });
 });
 compactServices.addEventListener('change',()=>serviceCards.forEach(card=>setServiceOpen(card,false)));
 
@@ -39,7 +67,7 @@ function observeReveals(){
   revealObserver=new IntersectionObserver(entries=>{
     entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('reveal-enter');revealObserver.unobserve(entry.target);}});
   },{threshold:.08,rootMargin:'0px 0px -20px 0px'});
-  document.querySelectorAll('.section-top,.service,.service-help,.master-photo,.master-copy,.intro-film,.approach-shell,.studio-gallery,.steps article,.review-copy,.review-panel,.faq>div,.contact-main,.address-card').forEach(el=>{if(!el.classList.contains('reveal-enter'))revealObserver.observe(el);});
+  document.querySelectorAll('.section-top,.master-photo,.master-copy,.intro-film,.approach-shell,.studio-gallery,.steps article,.review-copy,.review-panel,.faq>div,.contact-main,.address-card').forEach(el=>{if(!el.classList.contains('reveal-enter'))revealObserver.observe(el);});
 }
 observeReveals();
 reducedMotion.addEventListener('change',observeReveals);
