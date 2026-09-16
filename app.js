@@ -145,23 +145,3 @@ document.querySelectorAll('[data-lightbox]').forEach(link=>link.addEventListener
   const caption=link.dataset.lightbox||link.querySelector('img')?.alt||'Фотография студии';
   mediaCaption.textContent=caption;fullImage.alt=caption;fullImage.src=full;fullImage.hidden=false;mediaDialog.showModal();document.body.classList.add('dialog-open');
 }));
-const intro=media.introduction||{};
-const videoSource=localAsset(intro.src);
-if(videoSource){
-  const stage=document.querySelector('#intro-film-stage');
-  const status=document.querySelector('#intro-status');
-  stage.classList.add('has-video');
-  status.textContent='Короткое видео от меня';
-  const poster=localAsset(intro.poster);
-  if(poster)stage.querySelector('img').src=poster;
-  const play=document.createElement('button');play.type='button';play.className='video-play';play.setAttribute('aria-label','Посмотреть видео-знакомство');
-  play.innerHTML='<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" aria-hidden="true"><path d="m8 5 11 7-11 7Z"/></svg><span class="video-play-label">Посмотреть видео</span>';
-  stage.append(play);
-  play.addEventListener('click',()=>{
-    const video=document.createElement('video');video.controls=true;video.playsInline=true;video.preload='none';video.src=videoSource;video.setAttribute('aria-label','Видео-знакомство');if(poster)video.poster=poster;
-    const captions=localAsset(intro.captions);
-    if(captions){const track=document.createElement('track');track.kind='captions';track.srclang='ru';track.label='Русские субтитры';track.src=captions;track.default=true;video.append(track);}
-    video.addEventListener('error',()=>{status.textContent='Не удалось загрузить видео. Попробуйте позже.';});
-    stage.replaceChildren(video);video.focus();video.play().catch(()=>{status.textContent='Нажмите воспроизведение в плеере';});
-  },{once:true});
-}
