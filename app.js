@@ -21,9 +21,25 @@ const nav=document.querySelector('.header nav');
 menuButton.addEventListener('click',()=>{const open=nav.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(open));menuButton.setAttribute('aria-label',open?'Закрыть меню':'Открыть меню');});
 nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menuButton.setAttribute('aria-expanded','false');menuButton.setAttribute('aria-label','Открыть меню');}));
 document.addEventListener('keydown',event=>{if(event.key==='Escape'&&nav.classList.contains('open')){nav.classList.remove('open');menuButton.setAttribute('aria-expanded','false');menuButton.setAttribute('aria-label','Открыть меню');menuButton.focus();}});
-const load=document.querySelector('#load-reviews'),close=document.querySelector('#close-reviews'),widget=document.querySelector('#review-widget'),placeholder=document.querySelector('#review-placeholder');
-load.addEventListener('click',()=>{const frame=document.createElement('iframe');frame.title='Отзывы о студии «Твоя спина» на Яндекс Картах';frame.referrerPolicy='no-referrer';frame.src='https://yandex.ru/maps-reviews-widget/68532083989?comments';widget.replaceChildren(frame);widget.hidden=false;placeholder.hidden=true;close.hidden=false;close.focus();});
-close.addEventListener('click',()=>{widget.replaceChildren();widget.hidden=true;placeholder.hidden=false;close.hidden=true;load.focus();});
+const load=document.querySelector('#load-reviews'),close=document.querySelector('#close-reviews'),widget=document.querySelector('#review-widget'),placeholder=document.querySelector('#review-placeholder'),yandexConsent=document.querySelector('#yandex-consent');
+if(load&&close&&widget&&placeholder&&yandexConsent){
+  const syncYandexConsent=()=>{load.disabled=!yandexConsent.checked;};
+  syncYandexConsent();
+  yandexConsent.addEventListener('change',syncYandexConsent);
+  load.addEventListener('click',()=>{
+    if(!yandexConsent.checked)return;
+    const frame=document.createElement('iframe');
+    frame.title='Отзывы о студии «Твоя спина» на Яндекс Картах';
+    frame.referrerPolicy='no-referrer';
+    frame.loading='lazy';
+    frame.src='https://yandex.ru/maps-reviews-widget/68532083989?comments';
+    widget.replaceChildren(frame);widget.hidden=false;placeholder.hidden=true;close.hidden=false;close.focus();
+  });
+  close.addEventListener('click',()=>{
+    widget.replaceChildren();widget.hidden=true;placeholder.hidden=false;close.hidden=true;
+    yandexConsent.checked=false;syncYandexConsent();load.focus();
+  });
+}
 
 // Service cards stay compact on phones and tablets; one tap reveals the local photo and description.
 document.documentElement.classList.add('service-accordion');
@@ -134,6 +150,7 @@ const videoSource=localAsset(intro.src);
 if(videoSource){
   const stage=document.querySelector('#intro-film-stage');
   const status=document.querySelector('#intro-status');
+  stage.classList.add('has-video');
   status.textContent='Короткое видео от меня';
   const poster=localAsset(intro.poster);
   if(poster)stage.querySelector('img').src=poster;

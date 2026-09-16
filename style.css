@@ -573,3 +573,40 @@ h2 span,.intro-film h3 span{color:#207238}
   .studio-gallery .studio-shot-room{height:345px}
   .studio-gallery .studio-shot-entry{height:300px}
 }
+
+/* Explicit opt-in for the third-party Yandex reviews widget. */
+.external-consent{display:grid;grid-template-columns:20px minmax(0,1fr);gap:11px;align-items:start;max-width:470px;margin:18px auto 20px;text-align:left;color:var(--muted);font-size:12px;line-height:1.55;cursor:pointer}
+.external-consent input{width:18px;height:18px;margin:2px 0 0;accent-color:#274d3d}
+.external-consent a,.footer-policy{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.review-panel .button:disabled{cursor:not-allowed;opacity:.48;transform:none}
+.review-panel .button:disabled:hover{background:var(--ink)}
+
+/* The supplied introduction is portrait video; keep it intentional on wide screens. */
+.intro-film-stage.has-video{aspect-ratio:4/5;max-width:430px;width:100%;justify-self:center}
+.intro-film-stage.has-video>img{object-position:50% 38%}
+
+footer{flex-wrap:wrap}
+.footer-note{flex-basis:100%;font-size:11px;color:var(--muted);line-height:1.55;margin-top:8px}
+
+/* Standalone privacy page. */
+.policy-page{background:#f7f1e7}
+.policy-shell{width:min(900px,calc(100% - 40px));margin:40px auto 72px;background:#fffdf7;border:1px solid #d9d0bd;border-radius:28px;padding:clamp(28px,6vw,70px);box-shadow:0 20px 60px #4d3d2510}
+.policy-back{display:inline-flex;align-items:center;gap:8px;margin-bottom:42px;font-size:14px;border-bottom:1px solid currentColor}
+.policy-shell h1{font-size:clamp(39px,6vw,67px);line-height:1.03;letter-spacing:-.05em}
+.policy-lead{font-size:18px;color:var(--muted);margin:24px 0 44px;max-width:700px}
+.policy-section{padding:27px 0;border-top:1px solid #ded7c8}
+.policy-section h2{font-size:25px;letter-spacing:-.03em;margin-bottom:14px}
+.policy-section p,.policy-section li{font-size:15px;color:#405c52;line-height:1.75}
+.policy-section p+p{margin-top:12px}
+.policy-section ul{margin:10px 0 0;padding-left:22px}
+.policy-section a{text-decoration:underline;text-underline-offset:3px}
+.policy-date{margin-top:32px;color:var(--muted);font-size:13px}
+@media(max-width:740px){
+  .external-consent{font-size:12px}
+  .intro-film-stage.has-video{aspect-ratio:4/5;max-width:100%}
+  .policy-shell{width:min(100% - 24px,900px);margin:12px auto 40px;border-radius:22px;padding:28px 22px}
+  .policy-back{margin-bottom:30px}
+  .policy-shell h1{font-size:40px}
+  .policy-lead{font-size:16px;margin-bottom:34px}
+  .policy-section h2{font-size:22px}
+}

@@ -1,12 +1,12 @@
 // Local assets only. Certificate images open in the shared enlargement dialog.
 window.studioMedia = {
   introduction: {
-    src: '', // e.g. assets/pavel-introduction.mp4
-    poster: 'assets/welcome.webp',
+    src: 'assets/pavel-introduction.mp4',
+    poster: 'assets/pavel-introduction-poster.webp',
     captions: '', // Russian WebVTT, once the spoken video is supplied.
   },
   certificates: {
-    foundation: { thumbnail: 'assets/certificate-pelvis.jpeg', full: 'assets/certificate-pelvis.jpeg', alt: 'Сертификат Павла Агеева: «Поясница и таз — основа здоровья и красоты», 2023 год' },
+    foundation: { thumbnail: 'assets/certificate-pelvis.webp', full: 'assets/certificate-pelvis.webp', alt: 'Сертификат Павла Агеева: «Поясница и таз — основа здоровья и красоты», 2023 год' },
     anatomy: { thumbnail: 'assets/certificate-manual.jpeg', full: 'assets/certificate-manual.jpeg', alt: 'Сертификат Павла Агеева о прохождении курса мануальных техник, 2024 год' },
     continuing: { thumbnail: 'assets/certificate-delicate.jpeg', full: 'assets/certificate-delicate.jpeg', alt: 'Сертификат Павла Агеева по программе «Деликатная мануальная терапия», 2025 год' },
   },
