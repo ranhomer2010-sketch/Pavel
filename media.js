@@ -1,7 +1,7 @@
 // Local assets only. Certificate images open in the shared enlargement dialog.
 window.studioMedia = {
   introduction: {
-    src: 'assets/pavel-introduction-v2.mp4',
+    src: 'assets/pavel-introduction-v3.mp4',
     poster: 'assets/pavel-introduction-poster.webp',
     captions: '', // Russian WebVTT, once the spoken video is supplied.
   },
