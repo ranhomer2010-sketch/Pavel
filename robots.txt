@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin-preview/
+
+Host: tvoya-spina.ru
+Sitemap: https://tvoya-spina.ru/sitemap.xml

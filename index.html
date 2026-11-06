@@ -4,9 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="Студия массажа «Твоя спина» в Красногорске. Индивидуальный подход, пять видов массажа, цены и онлайн-запись.">
-<meta name="robots" content="noindex,nofollow">
+<meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="referrer" content="no-referrer">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; media-src 'self'; connect-src 'self'; frame-src https://yandex.ru https://*.yandex.ru; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://mc.yandex.ru https://mc.yandex.com; style-src 'self'; font-src 'self'; img-src 'self' data: https://mc.yandex.ru https://mc.yandex.com; media-src 'self'; connect-src 'self' https://mc.yandex.ru https://mc.yandex.com; frame-src https://yandex.ru https://*.yandex.ru; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<!-- Yandex Webmaster: add the client's verification meta tag here after it is issued. -->
 <meta name="theme-color" content="#eed8ae">
 <title>Твоя спина — массаж в Красногорске</title>
 <link rel="stylesheet" href="style.css?v=19">
@@ -14,6 +15,7 @@
 <script src="content-loader.js?v=1" defer></script>
 <script src="app.js?v=14" defer>
 </script>
+<script src="analytics.js?v=1" defer></script>
 </head>
 <body>
 <div class="botanical-intro" hidden aria-hidden="true">
@@ -510,7 +512,18 @@
 </a>
 <span>Павел Агеев · самозанятый</span>
 <a class="footer-policy" href="privacy.html">Политика конфиденциальности</a>
+<button class="footer-cookie-settings" id="cookie-settings" type="button" hidden>Настройки cookies</button>
 <p class="footer-note">Информация на сайте не является медицинской рекомендацией или публичной офертой. При острых состояниях обратитесь к врачу.</p>
 </footer>
+<section class="cookie-banner" id="cookie-banner" role="dialog" aria-labelledby="cookie-title" aria-describedby="cookie-copy" hidden>
+  <div class="cookie-copy">
+    <strong id="cookie-title">Аналитические cookies</strong>
+    <p id="cookie-copy">С вашего согласия Яндекс Метрика поможет понять, как посетители пользуются сайтом. До согласия счётчик не загружается. <a href="privacy.html#analytics">Подробнее</a>.</p>
+  </div>
+  <div class="cookie-actions">
+    <button class="cookie-button secondary" id="analytics-reject" type="button">Только необходимые</button>
+    <button class="cookie-button primary" id="analytics-accept" type="button">Разрешить аналитику</button>
+  </div>
+</section>
 </body>
 </html>
