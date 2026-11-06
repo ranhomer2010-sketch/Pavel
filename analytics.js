@@ -1,8 +1,7 @@
 /*
- * Yandex Metrica is deliberately disabled until the client supplies a counter ID.
- * Replace 0 with the numeric ID. The counter loads only after explicit consent.
+ * The counter loads only after the visitor gives explicit consent.
  */
-const YANDEX_METRIKA_ID=0;
+const YANDEX_METRIKA_ID=114109361;
 const ANALYTICS_CONSENT_KEY='tvoya-spina-analytics-consent-v1';
 
 const cookieBanner=document.querySelector('#cookie-banner');
